@@ -1,3 +1,15 @@
 package com.guilhermepalma.companysegment.domain
 
-data class Segment(var id: String, var name: String)
+import com.google.gson.annotations.SerializedName
+
+data class Segment(
+
+    @SerializedName("id")
+    var id: String,
+
+    @SerializedName("descricao")
+    var name: String,
+
+    @SerializedName("mccs")
+    var merchantCategory: List<MerchantCategory>
+)

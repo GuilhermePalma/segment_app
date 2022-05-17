@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface SegmentAPI {
 
-    @GET("matches.json")
+    @GET("segmentos")
     fun getMatches(): Call<List<Segment>>
 
 }

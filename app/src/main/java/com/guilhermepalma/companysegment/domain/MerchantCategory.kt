@@ -1,3 +1,15 @@
 package com.guilhermepalma.companysegment.domain
 
-data class MerchantCategory(var id: String, var code: Int, var group: String)
+import com.google.gson.annotations.SerializedName
+
+data class MerchantCategory(
+
+    @SerializedName("id")
+    var id: String,
+
+    @SerializedName("codigo")
+    var code: Int,
+
+    @SerializedName("agrupamento")
+    var group: String
+)
