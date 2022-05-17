@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name" translatable="false">Company Segment</string>
+    <string name="txt_segmentCompany">Segment of Company</string>
+    <string name="txt_segmentExplanation">Confirm the Segment your company operates in so we can customize your experience in your app</string>
+    <string name="label_segmentSelected">Selected Segmenet:</string>
+    <string name="txt_back">Back</string>
+    <string name="btn_finishRegister">Finish Register</string>
+</resources>

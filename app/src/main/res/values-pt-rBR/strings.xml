@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txt_segmentCompany">Segmento da Empresa</string>
+    <string name="txt_segmentExplanation">Confirme o segmento que sua empresa atua para personalizarmos sua experiência em nosso applicativo</string>
+    <string name="label_segmentSelected">Segmento Selecionado:</string>
+    <string name="txt_back">Voltar</string>
+    <string name="btn_finishRegister">Finalizar Cadastro</string>
+</resources>
