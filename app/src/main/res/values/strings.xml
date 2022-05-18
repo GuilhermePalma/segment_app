@@ -8,4 +8,5 @@
     <string name="txt_exampleSegment" translatable="false">Ex: Restaurante</string>
     <string name="txt_editSegment">Edit Segment Selected</string>
     <string name="txt_descriptionIconCompany">Icon of Store Mall</string>
+    <string name="txt_selectSegment">Select a Segment above</string>
 </resources>

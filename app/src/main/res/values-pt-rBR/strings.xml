@@ -7,4 +7,5 @@
     <string name="btn_finishRegister">Finalizar Cadastro</string>
     <string name="txt_editSegment">Edita o Segmento Selecionado</string>
     <string name="txt_descriptionIconCompany">Icone de uma Loja</string>
+    <string name="txt_selectSegment">Informe acima o Segmento para Continuar</string>
 </resources>
