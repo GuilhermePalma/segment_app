@@ -126,6 +126,52 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/activitymain_txt_mccName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="@string/txt_mccName"
+        android:textColor="@color/light_grey"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activitymain_dynamicLayout"
+        app:layout_constraintVertical_bias="0.002" />
+
+    <TextView
+        android:id="@+id/activitymain_txt_idSegment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="@string/txt_segmentID"
+        android:textColor="@color/light_grey"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activitymain_txt_mccName" />
+
+    <TextView
+        android:id="@+id/activitymain_txt_mccCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="@string/txt_merchantID"
+        android:textColor="@color/light_grey"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activitymain_txt_idSegment" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activitymain_recyclerSegment"
         android:layout_width="match_parent"
@@ -195,5 +241,6 @@
             android:textSize="13sp"
             app:icon="@drawable/ic_baseline_check_circle" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

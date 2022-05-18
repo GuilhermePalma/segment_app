@@ -10,4 +10,7 @@
     <string name="txt_selectSegment">Informe acima o Segmento para Continuar</string>
     <string name="txt_errorAPI">Ocorreu um erro ao Buscar dados Externos</string>
     <string name="txt_otherSegment">Outro Segmento…</string>
+    <string name="txt_merchantID">Codigo da Categoria Comercial: %s</string>
+    <string name="txt_segmentID">Codigo do Segmento: %s</string>
+    <string name="txt_mccName">Categoria Comercial Selecionada: %s</string>
 </resources>

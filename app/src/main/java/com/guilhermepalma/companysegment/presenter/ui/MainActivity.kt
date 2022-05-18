@@ -129,11 +129,17 @@ class MainActivity : AppCompatActivity() {
             getString(R.string.label_segmentSelected) + " ${merchantCategorySelected.group}"
         )
 
-        val segmentName: String = segmentsList.filter { value ->
+        val segment: Segment = segmentsList.filter { value ->
             value.merchantCategory.contains(merchantCategorySelected)
-        }[0].name
+        }[0]
 
-        binding.activitymainTxtSegmentSelected.text = segmentName
+        binding.activitymainTxtSegmentSelected.text = segment.name
+        binding.activitymainTxtIdSegment.text = getString(R.string.txt_segmentID, segment.id)
+        binding.activitymainTxtMccName.text =
+            getString(R.string.txt_mccName, merchantCategorySelected.group)
+        binding.activitymainTxtMccCode.text =
+            getString(R.string.txt_merchantID, merchantCategorySelected.code.toString())
+
         switchSelectedLayout(true)
     }
 
@@ -147,6 +153,9 @@ class MainActivity : AppCompatActivity() {
                     binding.activitymainRecyclerSegment,
                     binding.activitymainTxtSegmentSelected,
                     binding.activitymainBtnEdit,
+                    binding.activitymainTxtIdSegment,
+                    binding.activitymainTxtMccName,
+                    binding.activitymainTxtMccCode,
                 )
             )
         }
