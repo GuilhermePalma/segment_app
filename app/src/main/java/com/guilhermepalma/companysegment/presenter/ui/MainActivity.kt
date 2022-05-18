@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupHttpClient()
-        getListSegment(currentPage)
+        getListSegment()
     }
 
     private fun setupHttpClient() {
@@ -46,8 +46,8 @@ class MainActivity : AppCompatActivity() {
             .build().create(SegmentAPI::class.java)
     }
 
-    private fun getListSegment(page: Int) {
-        segmentAPI.getMatches(page).enqueue(object : Callback<Segment> {
+    private fun getListSegment() {
+        segmentAPI.getSegments(currentPage).enqueue(object : Callback<Segment> {
             override fun onFailure(call: Call<Segment>, t: Throwable) {
                 showErrorMessage()
                 Log.println(Log.ERROR, "FAILED API", t.toString())
@@ -75,45 +75,61 @@ class MainActivity : AppCompatActivity() {
         binding.activitymainAutoComplete.setOnItemClickListener { _, _, position, _ ->
             val text: String = onlySegmentsList[position]
 
-            val merchantCategoryList: List<MerchantCategory> =
-                segmentsList.filter { segment -> segment.name == text }[0].merchantCategory
+            if (text == getString(R.string.txt_otherSegment)) {
+                switchDynamicLayout(false)
+                binding.activitymainAutoComplete.setText("")
 
-            if (binding.activitymainRecyclerSegment.visibility == View.GONE) {
-                switchDynamicLayout()
-                setupRecyclerView(merchantCategoryList)
+                currentPage = if (currentPage == 4) 1 else currentPage + 1
+                getListSegment()
             } else {
-                segmentCategoryAdapter.run {
-                    setData(merchantCategoryList)
-                    notifyDataSetChanged()
+                val merchantCategoryList: List<MerchantCategory> =
+                    segmentsList.filter { segment -> segment.name == text }[0].merchantCategory
+                switchDynamicLayout(true)
+
+                if (binding.activitymainRecyclerSegment.adapter == null) {
+                    setupRecyclerView(merchantCategoryList)
+                } else {
+                    segmentCategoryAdapter.run {
+                        setData(merchantCategoryList)
+                        notifyDataSetChanged()
+                    }
                 }
             }
         }
     }
 
     private fun getOnlySegmentsList() {
+        onlySegmentsList.clear()
         segmentsList.forEach { onlySegmentsList.add(it.name) }
-
-        // TODO Adicionar Valor "Outro" para Avançar p/ Proxima Pagina
+        onlySegmentsList.add(getString(R.string.txt_otherSegment))
     }
 
     private fun setupRecyclerView(merchantCategoryList: List<MerchantCategory>) {
-        val cloneInstanceList = merchantCategoryList.subList(
+        val cloneInstanceList: List<MerchantCategory> = merchantCategoryList.subList(
             0, merchantCategoryList.size - 1
-        ) as MutableList<MerchantCategory>
+        )
 
-        segmentCategoryAdapter = MerchantCategoryAdapter(cloneInstanceList)
+        segmentCategoryAdapter =
+            MerchantCategoryAdapter(cloneInstanceList as MutableList<MerchantCategory>)
         binding.activitymainRecyclerSegment.adapter = segmentCategoryAdapter
         binding.activitymainRecyclerSegment.layoutManager = LinearLayoutManager(applicationContext)
     }
 
-    private fun switchDynamicLayout() {
-        binding.activitymainRecyclerSegment.visibility =
+    private fun switchDynamicLayout(showRecyclerView: Boolean) {
+        val visibilityRecyclerView: Int =
             if (binding.activitymainRecyclerSegment.visibility == View.GONE) View.VISIBLE
             else View.GONE
 
-        binding.activitymainTxtSelectSegment.visibility =
-            if (binding.activitymainTxtSelectSegment.visibility == View.GONE) View.VISIBLE
+        val visibilityTextSelect: Int =
+            if (visibilityRecyclerView == View.GONE) View.VISIBLE
             else View.GONE
+
+        if (showRecyclerView && binding.activitymainRecyclerSegment.visibility != View.VISIBLE ||
+            !showRecyclerView && binding.activitymainTxtSelectSegment.visibility != View.VISIBLE
+        ) {
+            binding.activitymainRecyclerSegment.visibility = visibilityRecyclerView
+            binding.activitymainTxtSelectSegment.visibility = visibilityTextSelect
+        }
     }
 
     private fun showErrorMessage() {

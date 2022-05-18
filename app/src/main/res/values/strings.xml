@@ -10,4 +10,5 @@
     <string name="txt_descriptionIconCompany">Icon of Store Mall</string>
     <string name="txt_selectSegment">Select a Segment above</string>
     <string name="txt_errorAPI">An error occurred while fetching external data</string>
+    <string name="txt_otherSegment">Other Segment…</string>
 </resources>

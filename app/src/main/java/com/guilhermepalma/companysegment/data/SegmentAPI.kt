@@ -8,6 +8,6 @@ import retrofit2.http.Query
 interface SegmentAPI {
 
     @GET("segmentos")
-    fun getMatches(@Query("page") page: Int): Call<Segment>
+    fun getSegments(@Query("page") page: Int): Call<Segment>
 
 }
