@@ -8,22 +8,36 @@
 
     <TextView
         android:id="@+id/activitymain_txt_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:gravity="center_horizontal"
         android:text="@string/txt_segmentCompany"
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:textSize="26sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activitymain_txt_subtitle"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/txt_descriptionIconCompany"
+        android:src="@drawable/ic_baseline_store_mall"
+        app:layout_constraintBottom_toBottomOf="@+id/activitymain_txt_title"
+        app:layout_constraintEnd_toStartOf="@+id/activitymain_txt_title"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/activitymain_txt_title" />
 
     <TextView
         android:id="@+id/activitymain_txt_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:gravity="center"
         android:text="@string/txt_segmentExplanation"
@@ -50,7 +64,42 @@
         app:layout_constraintTop_toBottomOf="@+id/activitymain_txt_subtitle"
         app:layout_constraintVertical_bias="0.1"
         tools:ignore="SpeakableTextPresentCheck" />
-    <!--
+
+    <LinearLayout
+        android:id="@+id/activitymain_dynamicLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainactivity_labelSegment">
+
+        <TextView
+            android:id="@+id/activitymain_txt_segmentSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text for Example"
+            android:textSize="22sp"
+            android:visibility="gone"
+            tools:ignore="HardcodedText" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/activitymain_btn_edit"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="54dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/txt_editSegment"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:visibility="gone"
+            app:icon="@drawable/ic_baseline_edit"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/activitymain_layoutAutoComplete"
@@ -59,6 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:visibility="visible"
             app:helperText="@string/txt_exampleSegment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,49 +123,20 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/activitymain_recyclerSegment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activitymain_layoutAutoComplete"
-            app:layout_constraintVertical_bias="0.0"
-            tools:listitem="@layout/item_segment" />
-    -->
-    <LinearLayout
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activitymain_recyclerSegment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainactivity_labelSegment">
+        app:layout_constraintTop_toBottomOf="@id/activitymain_dynamicLayout"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_segment" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Text for Example"
-            android:textSize="22sp"
-            tools:ignore="HardcodedText" />
-
-        <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="54dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:insetLeft="0dp"
-            android:insetTop="0dp"
-            android:insetRight="0dp"
-            android:insetBottom="0dp"
-            app:icon="@android:drawable/btn_dialog"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -140,7 +161,7 @@
             android:insetBottom="0dp"
             android:text="@string/txt_back"
             android:textSize="13sp"
-            app:icon="@android:drawable/btn_dialog"
+            app:icon="@drawable/ic_baseline_arrow_back"
             app:iconGravity="start" />
 
         <Button
@@ -155,7 +176,7 @@
             android:insetBottom="0dp"
             android:text="@string/btn_finishRegister"
             android:textSize="13sp"
-            app:icon="@android:drawable/btn_dialog" />
+            app:icon="@drawable/ic_baseline_check_circle" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

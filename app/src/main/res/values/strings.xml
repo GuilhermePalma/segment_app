@@ -6,4 +6,6 @@
     <string name="txt_back">Back</string>
     <string name="btn_finishRegister">Finish Register</string>
     <string name="txt_exampleSegment" translatable="false">Ex: Restaurante</string>
+    <string name="txt_editSegment">Edit Segment Selected</string>
+    <string name="txt_descriptionIconCompany">Icon of Store Mall</string>
 </resources>
