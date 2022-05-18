@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.guilhermepalma.companysegment.R
@@ -22,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var merchantCategoryList: List<MerchantCategory>
     private lateinit var binding: ActivityMainBinding
     private lateinit var segmentsList: List<Segment>
     private lateinit var segmentCategoryAdapter: MerchantCategoryAdapter
@@ -37,6 +39,10 @@ class MainActivity : AppCompatActivity() {
 
         setupHttpClient()
         getListSegment()
+
+        binding.activitymainBtnEdit.setOnClickListener {
+            switchSelectedLayout(false)
+        }
     }
 
     private fun setupHttpClient() {
@@ -49,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     private fun getListSegment() {
         segmentAPI.getSegments(currentPage).enqueue(object : Callback<Segment> {
             override fun onFailure(call: Call<Segment>, t: Throwable) {
-                showErrorMessage()
+                showSnackBar(getString(R.string.txt_errorAPI))
                 Log.println(Log.ERROR, "FAILED API", t.toString())
             }
 
@@ -57,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     segmentsList = response.body()!!.segmentItems
                     setupSelectSegment()
-                } else showErrorMessage()
+                } else showSnackBar(getString(R.string.txt_errorAPI))
             }
         })
     }
@@ -82,12 +88,12 @@ class MainActivity : AppCompatActivity() {
                 currentPage = if (currentPage == 4) 1 else currentPage + 1
                 getListSegment()
             } else {
-                val merchantCategoryList: List<MerchantCategory> =
+                merchantCategoryList =
                     segmentsList.filter { segment -> segment.name == text }[0].merchantCategory
                 switchDynamicLayout(true)
 
                 if (binding.activitymainRecyclerSegment.adapter == null) {
-                    setupRecyclerView(merchantCategoryList)
+                    setupRecyclerView()
                 } else {
                     segmentCategoryAdapter.run {
                         setData(merchantCategoryList)
@@ -104,36 +110,73 @@ class MainActivity : AppCompatActivity() {
         onlySegmentsList.add(getString(R.string.txt_otherSegment))
     }
 
-    private fun setupRecyclerView(merchantCategoryList: List<MerchantCategory>) {
+    private fun setupRecyclerView() {
         val cloneInstanceList: List<MerchantCategory> = merchantCategoryList.subList(
-            0, merchantCategoryList.size - 1
+            0, merchantCategoryList.size
         )
 
-        segmentCategoryAdapter =
-            MerchantCategoryAdapter(cloneInstanceList as MutableList<MerchantCategory>)
+        segmentCategoryAdapter = MerchantCategoryAdapter(
+            cloneInstanceList as MutableList<MerchantCategory>
+        ) { position -> onItemClicked(position) }
         binding.activitymainRecyclerSegment.adapter = segmentCategoryAdapter
         binding.activitymainRecyclerSegment.layoutManager = LinearLayoutManager(applicationContext)
     }
 
-    private fun switchDynamicLayout(showRecyclerView: Boolean) {
-        val visibilityRecyclerView: Int =
-            if (binding.activitymainRecyclerSegment.visibility == View.GONE) View.VISIBLE
-            else View.GONE
+    private fun onItemClicked(position: Int) {
+        val merchantCategorySelected: MerchantCategory = merchantCategoryList[position]
 
-        val visibilityTextSelect: Int =
-            if (visibilityRecyclerView == View.GONE) View.VISIBLE
-            else View.GONE
+        showSnackBar(
+            getString(R.string.label_segmentSelected) + " ${merchantCategorySelected.group}"
+        )
 
-        if (showRecyclerView && binding.activitymainRecyclerSegment.visibility != View.VISIBLE ||
-            !showRecyclerView && binding.activitymainTxtSelectSegment.visibility != View.VISIBLE
+        val segmentName: String = segmentsList.filter { value ->
+            value.merchantCategory.contains(merchantCategorySelected)
+        }[0].name
+
+        binding.activitymainTxtSegmentSelected.text = segmentName
+        switchSelectedLayout(true)
+    }
+
+    private fun switchSelectedLayout(showSelectedLayout: Boolean) {
+        if (showSelectedLayout && !viewIsVisible(binding.activitymainTxtSegmentSelected) ||
+            !showSelectedLayout && !viewIsVisible(binding.activitymainLayoutAutoComplete)
         ) {
-            binding.activitymainRecyclerSegment.visibility = visibilityRecyclerView
-            binding.activitymainTxtSelectSegment.visibility = visibilityTextSelect
+            invertVisibility(
+                listOf(
+                    binding.activitymainLayoutAutoComplete,
+                    binding.activitymainRecyclerSegment,
+                    binding.activitymainTxtSegmentSelected,
+                    binding.activitymainBtnEdit,
+                )
+            )
         }
     }
 
-    private fun showErrorMessage() {
-        Snackbar.make(binding.root, R.string.txt_errorAPI, Snackbar.LENGTH_LONG).show()
+    private fun switchDynamicLayout(showRecyclerView: Boolean) {
+        if (showRecyclerView && !viewIsVisible(binding.activitymainRecyclerSegment) ||
+            !showRecyclerView && !viewIsVisible(binding.activitymainTxtSelectSegment)
+        ) {
+            invertVisibility(
+                listOf(
+                    binding.activitymainRecyclerSegment,
+                    binding.activitymainTxtSelectSegment
+                )
+            )
+        }
+    }
+
+    private fun viewIsVisible(view: View): Boolean {
+        return view.isVisible
+    }
+
+    private fun invertVisibility(view: List<View>) {
+        view.forEach {
+            it.visibility = if (it.visibility == View.GONE) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun showSnackBar(text: String) {
+        Snackbar.make(binding.root, text, Snackbar.LENGTH_LONG).show()
     }
 
 }
