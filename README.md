@@ -1,6 +1,12 @@
 <h1 align="center">Segment APP</h1>
 <h3 align="center">Code Challenge Android</h3>
 
+<div align="center">
+
+  [!Funcionamento do APP](https://user-images.githubusercontent.com/54846154/169289636-549962a9-a59e-4b19-84e8-c86abc8e8d15.mp4)
+
+</div>
+
 ## Sobre o Projeto
 
 Segment APP é um APP Android criado a partir de um ``code challenge``. O Objetivo do APP é realizar
