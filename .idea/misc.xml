@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Guilherme/Programacao/Java_Android/Kotlin/CompanySegment/app/src/main/res/drawable/ic_baseline_arrow_back.xml" value="0.1825" />
+        <entry key="..\:/Guilherme/Programacao/Java_Android/Kotlin/CompanySegment/app/src/main/res/drawable/ic_baseline_edit.xml" value="0.189" />
+        <entry key="..\:/Guilherme/Programacao/Java_Android/Kotlin/CompanySegment/app/src/main/res/drawable/ic_baseline_store_mall.xml" value="0.189" />
         <entry key="..\:/Guilherme/Programacao/Java_Android/Kotlin/CompanySegment/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Guilherme/Programacao/Java_Android/Kotlin/CompanySegment/app/src/main/res/layout/item_segment.xml" value="0.22" />
       </map>

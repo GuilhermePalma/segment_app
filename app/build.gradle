@@ -29,6 +29,32 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    flavorDimensions "base"
+    productFlavors {
+        BlueTheme {
+            applicationId "com.guilhermepalma.companysegment.bbluetheme"
+            dimension "base"
+        }
+        RedTheme {
+            applicationId "com.guilhermepalma.companysegment.redtheme"
+            dimension "base"
+        }
+    }
+
+    sourceSets {
+        BlueTheme {
+            res {
+                srcDirs 'src/main/res'
+            }
+        }
+        RedTheme {
+            res {
+                srcDirs 'src/red/res'
+            }
+        }
+    }
+
     viewBinding {
         enabled = true
     }
