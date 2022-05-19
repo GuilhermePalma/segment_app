@@ -14,4 +14,9 @@
     <string name="txt_merchantID">Merchant Category Code: %s</string>
     <string name="txt_segmentID">ID of Segment: %s</string>
     <string name="txt_mccName">Merchant Category Selected: %s</string>
+    <string name="txt_titleRefres">Restart APP</string>
+    <string name="txt_messageRefres">Do you want to run the APP again?</string>
+    <string name="txt_start">Restart</string>
+    <string name="txt_exit">Exit</string>
+    <string name="txt_finishRegister">User registered successfully !!!</string>
 </resources>

@@ -13,4 +13,9 @@
     <string name="txt_merchantID">Codigo da Categoria Comercial: %s</string>
     <string name="txt_segmentID">Codigo do Segmento: %s</string>
     <string name="txt_mccName">Categoria Comercial Selecionada: %s</string>
+    <string name="txt_titleRefres">Reiniciar APP</string>
+    <string name="txt_messageRefres">Deseja executar o APP novamente ?</string>
+    <string name="txt_start">Reiniciar</string>
+    <string name="txt_exit">Sair</string>
+    <string name="txt_finishRegister">Usuário cadastrado com Sucesso !!!</string>
 </resources>
