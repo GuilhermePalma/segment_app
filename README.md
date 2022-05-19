@@ -3,7 +3,7 @@
 
 <div align="center">
 
-  [!Funcionamento do APP](https://user-images.githubusercontent.com/54846154/169289636-549962a9-a59e-4b19-84e8-c86abc8e8d15.mp4)
+  [!Funcionamento do APP](https://user-images.githubusercontent.com/54846154/169365418-fb420ebd-84ab-4075-bf47-265e9daae5f7.mp4)
 
 </div>
 
